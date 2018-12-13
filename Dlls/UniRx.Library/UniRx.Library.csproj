@@ -333,6 +333,7 @@
     <Compile Include="..\..\Assets\Plugins\UniRx\Scripts\Operators\Dematerialize.cs">
       <Link>Operators\Dematerialize.cs</Link>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="..\..\Assets\Plugins\UniRx\Scripts\Operators\Distinct.cs">
       <Link>Operators\Distinct.cs</Link>
     </Compile>
@@ -340,6 +341,9 @@
       <Link>Operators\DistinctUntilChanged.cs</Link>
     </Compile>
     <Compile Include="..\..\Assets\Plugins\UniRx\Scripts\Operators\Do.cs">
+=======
+    <Compile Include="..\..\Assets\UniRx\Scripts\Operators\Do.cs">
+>>>>>>> parent of fa1993f... Distinct, DistinctUntilChanged #97
       <Link>Operators\Do.cs</Link>
     </Compile>
     <Compile Include="..\..\Assets\Plugins\UniRx\Scripts\Operators\Empty.cs">

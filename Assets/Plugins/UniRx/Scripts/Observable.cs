@@ -207,6 +207,7 @@ namespace UniRx
 
         public static IObservable<TSource> Distinct<TSource>(this IObservable<TSource> source)
         {
+<<<<<<< HEAD:Assets/Plugins/UniRx/Scripts/Observable.cs
 #if !UniRxLibrary
             var comparer = UnityEqualityComparer.GetDefault<TSource>();
 #else
@@ -214,15 +215,50 @@ namespace UniRx
 #endif
 
             return new DistinctObservable<TSource>(source, comparer);
+=======
+            return Distinct<TSource>(source, (IEqualityComparer<TSource>)null);
+>>>>>>> parent of fa1993f... Distinct, DistinctUntilChanged #97:Assets/UniRx/Scripts/Observable.cs
         }
 
         public static IObservable<TSource> Distinct<TSource>(this IObservable<TSource> source, IEqualityComparer<TSource> comparer)
         {
-            return new DistinctObservable<TSource>(source, comparer);
+            // don't use x => x for avoid iOS AOT issue.
+            return Observable.Create<TSource>(observer =>
+            {
+                var hashSet = (comparer == null)
+                    ? new HashSet<TSource>()
+                    : new HashSet<TSource>(comparer);
+                return source.Subscribe(
+                    x =>
+                    {
+                        var key = default(TSource);
+                        var hasAdded = false;
+
+                        try
+                        {
+                            key = x;
+                            hasAdded = hashSet.Add(key);
+                        }
+                        catch (Exception exception)
+                        {
+                            observer.OnError(exception);
+                            return;
+                        }
+
+                        if (hasAdded)
+                        {
+                            observer.OnNext(x);
+                        }
+                    },
+                    observer.OnError,
+                    observer.OnCompleted
+                );
+            });
         }
 
         public static IObservable<TSource> Distinct<TSource, TKey>(this IObservable<TSource> source, Func<TSource, TKey> keySelector)
         {
+<<<<<<< HEAD:Assets/Plugins/UniRx/Scripts/Observable.cs
 #if !UniRxLibrary
             var comparer = UnityEqualityComparer.GetDefault<TKey>();
 #else
@@ -230,15 +266,49 @@ namespace UniRx
 #endif
 
             return new DistinctObservable<TSource, TKey>(source, keySelector, comparer);
+=======
+            return Distinct(source, keySelector, null);
+>>>>>>> parent of fa1993f... Distinct, DistinctUntilChanged #97:Assets/UniRx/Scripts/Observable.cs
         }
 
         public static IObservable<TSource> Distinct<TSource, TKey>(this IObservable<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer)
         {
-            return new DistinctObservable<TSource, TKey>(source, keySelector, comparer);
+            return Observable.Create<TSource>(observer =>
+            {
+                var hashSet = (comparer == null)
+                    ? new HashSet<TKey>()
+                    : new HashSet<TKey>(comparer);
+                return source.Subscribe(
+                    x =>
+                    {
+                        var key = default(TKey);
+                        var hasAdded = false;
+
+                        try
+                        {
+                            key = keySelector(x);
+                            hasAdded = hashSet.Add(key);
+                        }
+                        catch (Exception exception)
+                        {
+                            observer.OnError(exception);
+                            return;
+                        }
+
+                        if (hasAdded)
+                        {
+                            observer.OnNext(x);
+                        }
+                    },
+                    observer.OnError,
+                    observer.OnCompleted
+                );
+            });
         }
 
         public static IObservable<T> DistinctUntilChanged<T>(this IObservable<T> source)
         {
+<<<<<<< HEAD:Assets/Plugins/UniRx/Scripts/Observable.cs
 #if !UniRxLibrary
             var comparer = UnityEqualityComparer.GetDefault<T>();
 #else
@@ -246,17 +316,75 @@ namespace UniRx
 #endif
 
             return new DistinctUntilChangedObservable<T>(source, comparer);
+=======
+            return source.DistinctUntilChanged((IEqualityComparer<T>)null);
+>>>>>>> parent of fa1993f... Distinct, DistinctUntilChanged #97:Assets/UniRx/Scripts/Observable.cs
         }
 
         public static IObservable<T> DistinctUntilChanged<T>(this IObservable<T> source, IEqualityComparer<T> comparer)
         {
             if (source == null) throw new ArgumentNullException("source");
 
-            return new DistinctUntilChangedObservable<T>(source, comparer);
+            return Observable.Create<T>(observer =>
+            {
+                var isFirst = true;
+                var prevKey = default(T);
+                return source.Subscribe(x =>
+                {
+                    T currentKey;
+                    try
+                    {
+                        currentKey = x;
+                    }
+                    catch (Exception ex)
+                    {
+                        observer.OnError(ex);
+                        return;
+                    }
+
+                    var sameKey = false;
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            if (comparer == null)
+                            {
+                                if (currentKey == null)
+                                {
+                                    sameKey = (prevKey == null);
+                                }
+                                else
+                                {
+                                    sameKey = currentKey.Equals(prevKey);
+                                }
+                            }
+                            else
+                            {
+                                sameKey = comparer.Equals(currentKey, prevKey);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            observer.OnError(ex);
+                            return;
+                        }
+                    }
+                    if (!sameKey)
+                    {
+                        prevKey = currentKey;
+                        observer.OnNext(x);
+                    }
+                }, observer.OnError, observer.OnCompleted);
+            });
         }
 
         public static IObservable<T> DistinctUntilChanged<T, TKey>(this IObservable<T> source, Func<T, TKey> keySelector)
         {
+<<<<<<< HEAD:Assets/Plugins/UniRx/Scripts/Observable.cs
 #if !UniRxLibrary
             var comparer = UnityEqualityComparer.GetDefault<TKey>();
 #else
@@ -264,13 +392,58 @@ namespace UniRx
 #endif
 
             return new DistinctUntilChangedObservable<T, TKey>(source, keySelector, comparer);
+=======
+            return DistinctUntilChanged<T, TKey>(source, keySelector, null);
+>>>>>>> parent of fa1993f... Distinct, DistinctUntilChanged #97:Assets/UniRx/Scripts/Observable.cs
         }
 
         public static IObservable<T> DistinctUntilChanged<T, TKey>(this IObservable<T> source, Func<T, TKey> keySelector, IEqualityComparer<TKey> comparer)
         {
             if (source == null) throw new ArgumentNullException("source");
 
-            return new DistinctUntilChangedObservable<T, TKey>(source, keySelector, comparer);
+            return Observable.Create<T>(observer =>
+            {
+                var isFirst = true;
+                var prevKey = default(TKey);
+                return source.Subscribe(x =>
+                {
+                    TKey currentKey;
+                    try
+                    {
+                        currentKey = keySelector(x);
+                    }
+                    catch (Exception ex)
+                    {
+                        observer.OnError(ex);
+                        return;
+                    }
+
+                    var sameKey = false;
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            sameKey = (comparer == null)
+                                ? currentKey.Equals(prevKey)
+                                : comparer.Equals(currentKey, prevKey);
+                        }
+                        catch (Exception ex)
+                        {
+                            observer.OnError(ex);
+                            return;
+                        }
+                    }
+                    if (!sameKey)
+                    {
+                        prevKey = currentKey;
+                        observer.OnNext(x);
+                    }
+                }, observer.OnError, observer.OnCompleted);
+            });
         }
 
         public static IObservable<T> IgnoreElements<T>(this IObservable<T> source)
