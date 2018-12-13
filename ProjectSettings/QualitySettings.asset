@@ -14,17 +14,18 @@ QualitySettings:
     shadowProjection: 1
     shadowCascades: 1
     shadowDistance: 15
+<<<<<<< HEAD
     shadowNearPlaneOffset: 2
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+=======
+>>>>>>> parent of de13438... Ready for 4.8
     blendWeights: 1
     textureQuality: 1
     anisotropicTextures: 0
     antiAliasing: 0
     softParticles: 0
     softVegetation: 0
-    realtimeReflectionProbes: 0
-    billboardsFaceCameraPosition: 0
     vSyncCount: 0
     lodBias: 0.3
     maximumLODLevel: 0
@@ -40,17 +41,18 @@ QualitySettings:
     shadowProjection: 1
     shadowCascades: 1
     shadowDistance: 20
+<<<<<<< HEAD
     shadowNearPlaneOffset: 2
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+=======
+>>>>>>> parent of de13438... Ready for 4.8
     blendWeights: 2
     textureQuality: 0
     anisotropicTextures: 0
     antiAliasing: 0
     softParticles: 0
     softVegetation: 0
-    realtimeReflectionProbes: 0
-    billboardsFaceCameraPosition: 0
     vSyncCount: 0
     lodBias: 0.4
     maximumLODLevel: 0
@@ -66,17 +68,18 @@ QualitySettings:
     shadowProjection: 1
     shadowCascades: 1
     shadowDistance: 20
+<<<<<<< HEAD
     shadowNearPlaneOffset: 2
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+=======
+>>>>>>> parent of de13438... Ready for 4.8
     blendWeights: 2
     textureQuality: 0
     anisotropicTextures: 1
     antiAliasing: 0
     softParticles: 0
     softVegetation: 0
-    realtimeReflectionProbes: 0
-    billboardsFaceCameraPosition: 0
     vSyncCount: 0
     lodBias: 0.7
     maximumLODLevel: 0
@@ -92,18 +95,25 @@ QualitySettings:
     shadowProjection: 1
     shadowCascades: 2
     shadowDistance: 40
+<<<<<<< HEAD
     shadowNearPlaneOffset: 2
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+=======
+>>>>>>> parent of de13438... Ready for 4.8
     blendWeights: 2
     textureQuality: 0
     anisotropicTextures: 1
     antiAliasing: 4
     softParticles: 0
     softVegetation: 1
+<<<<<<< HEAD
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     vSyncCount: 0
+=======
+    vSyncCount: 1
+>>>>>>> parent of de13438... Ready for 4.8
     lodBias: 1
     maximumLODLevel: 0
     particleRaycastBudget: 256
@@ -118,17 +128,18 @@ QualitySettings:
     shadowProjection: 1
     shadowCascades: 2
     shadowDistance: 70
+<<<<<<< HEAD
     shadowNearPlaneOffset: 2
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+=======
+>>>>>>> parent of de13438... Ready for 4.8
     blendWeights: 4
     textureQuality: 0
     anisotropicTextures: 2
     antiAliasing: 2
     softParticles: 1
     softVegetation: 1
-    realtimeReflectionProbes: 1
-    billboardsFaceCameraPosition: 1
     vSyncCount: 1
     lodBias: 1.5
     maximumLODLevel: 0
@@ -144,17 +155,18 @@ QualitySettings:
     shadowProjection: 1
     shadowCascades: 4
     shadowDistance: 150
+<<<<<<< HEAD
     shadowNearPlaneOffset: 2
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
+=======
+>>>>>>> parent of de13438... Ready for 4.8
     blendWeights: 4
     textureQuality: 0
     anisotropicTextures: 2
     antiAliasing: 2
     softParticles: 1
     softVegetation: 1
-    realtimeReflectionProbes: 1
-    billboardsFaceCameraPosition: 1
     vSyncCount: 1
     lodBias: 2
     maximumLODLevel: 0
@@ -163,9 +175,25 @@ QualitySettings:
     asyncUploadBufferSize: 4
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
+<<<<<<< HEAD
     Android: 0
     Standalone: 0
     Web: 0
     WebGL: 0
     Windows Store Apps: 0
     iPhone: 0
+=======
+    Android: 2
+    BlackBerry: 2
+    FlashPlayer: 3
+    GLES Emulation: 3
+    PS3: 3
+    Standalone: 3
+    Tizen: 2
+    WP8: 3
+    Web: 3
+    Wii: 3
+    Windows Store Apps: 3
+    XBOX360: 3
+    iPhone: 2
+>>>>>>> parent of de13438... Ready for 4.8
